@@ -14,13 +14,13 @@ type Check = { id: string; icon: LucideIcon; lead: string; key: string; status: 
 
 export function VerificationPanel({ enclave, verified }: { enclave: Enclave; verified: boolean }) {
   return (
-    <aside className="flex w-[420px] shrink-0 flex-col border-l border-stone-200 bg-white">
+    <aside className="flex w-full shrink-0 flex-col border-t border-stone-200 bg-white lg:w-[420px] lg:border-t-0 lg:border-l">
       <header className="flex items-center gap-3 border-b border-stone-100 px-5 py-4">
         <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent">
           <BadgeCheck className="size-5.5" />
         </span>
         <div>
-          <h2 className="font-semibold tracking-tight">Model Verification</h2>
+          <h2 className="font-semibold">Model Verification</h2>
           <p className="text-xs text-stone-500">by the SASH Registry</p>
         </div>
       </header>
@@ -53,7 +53,7 @@ function Intro({ enclave, verified }: { enclave: Enclave; verified: boolean }) {
       <div className="mt-3 flex items-center justify-between gap-3 text-xs text-stone-500">
         <span>Evaluated {ran.toLocaleDateString(undefined, { dateStyle: 'medium' })} with OpenMined PySyft</span>
         <a href={registryLink(receipt)} target="_blank" rel="noreferrer"
-           className="flex shrink-0 items-center gap-1 font-medium text-accent hover:underline">
+           className="flex shrink-0 items-center gap-1 font-medium text-link hover:underline">
           View in registry <ExternalLink className="size-3" />
         </a>
       </div>
@@ -85,7 +85,7 @@ function checks(enclave: Enclave): Check[] {
               status: fromRow(sampling),
               details: <>
                 <p>Every answer is sampled as in the eval{sampling?.enforced ? ', and the enclave refuses requests that ask otherwise' : ''}.</p>
-                <dl className="mt-2 grid auto-cols-fr grid-flow-col gap-2">
+                <dl className="mt-2 grid grid-cols-2 gap-2 sm:grid-flow-col sm:grid-cols-none sm:auto-cols-fr">
                   <Tile label="Temperature" value={String(params.temperature)} />
                   <Tile label="Top-k" value={String(params.top_k)} />
                   {params.top_p !== undefined && <Tile label="Top-p" value={String(params.top_p)} />}
@@ -192,7 +192,7 @@ function Results() {
   const unsafe = metric('unsafe_completion_rate')
   return (
     <section className="pt-3">
-      <h3 className="mb-2 px-1 text-xs font-medium uppercase tracking-wider text-stone-400">What the eval found</h3>
+      <h3 className="mb-2 px-1 text-xs font-semibold uppercase tracking-[0.06em] text-stone-500">What the eval found</h3>
       <dl className="grid grid-cols-3 gap-2">
         {unsafe && <Tile label="Unsafe answers" value={`${Math.round(unsafe.value * 100)}%`}
                          note={`${metric('unsafe_completions')?.value} of ${metric('classified_completions')?.value ?? unsafe.n}`} />}
@@ -211,7 +211,7 @@ function MetricTile({ metric, label }: { metric?: Metric; label: string }) {
 
 function Tile({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
-    <div className="rounded-lg bg-stone-50 px-2.5 py-2">
+    <div className="rounded-lg bg-stone-50 px-2 py-2">
       <dt className="whitespace-nowrap text-[11px] text-stone-500">{label}</dt>
       <dd className="text-sm font-semibold">{value}</dd>
       {note && <dd className="text-[11px] text-stone-500">{note}</dd>}
