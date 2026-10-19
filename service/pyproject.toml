@@ -2,6 +2,7 @@
 name = "inference-service"
 version = "0.1.0"
 description = "The verified inference demo's enclave service: everything the enclave runs besides vLLM"
+license = "Apache-2.0"
 requires-python = ">=3.12"
 # The versions vLLM's images ship (vllm/vllm-openai and vllm/vllm-openai-cpu v0.31.0), which run this
 # service without installing anything.

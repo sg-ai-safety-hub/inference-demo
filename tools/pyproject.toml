@@ -2,6 +2,7 @@
 name = "inference-tools"
 version = "0.1.0"
 description = "What runs outside the enclave: the model owner's adapter upload, and comparing a statement with a receipt"
+license = "Apache-2.0"
 requires-python = ">=3.12"
 dependencies = [
     "inference-service",  # the enclave's own definitions: the dirhash, the approval message, the envelope

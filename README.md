@@ -369,3 +369,7 @@ The packer container writes its downloads and packs (about 3× the model size) u
 - Hosting the UI on the registry's site, and linking the registry from it (`VITE_REGISTRY_URL`; the
   Pages build still links `localhost:5173`).
 - Reading the receipt from the registry instead of the fixture.
+
+## License
+
+Apache 2.0, see `LICENSE`.
